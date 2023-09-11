@@ -1,9 +1,12 @@
 {
+    "description": "SortedLinkedListPackage",
     "autoload": {
         "psr-4": {
             "LinkedList\\": "src/"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "phpunit": "php.exe C:/xampp/htdocs/LinkedList/vendor/phpunit/phpunit/phpunit tests",
         "stan": "vendor/bin/phpstan analyse src tests --level 9"
