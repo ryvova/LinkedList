@@ -1,4 +1,5 @@
 {
+    "name": "ryvova/linkedlist",
     "description": "SortedLinkedListPackage",
     "autoload": {
         "psr-4": {
