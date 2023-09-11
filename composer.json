@@ -1,0 +1,19 @@
+{
+    "autoload": {
+        "psr-4": {
+            "LinkedList\\": "src/"
+        }
+    },
+    "scripts": {
+        "phpunit": "php.exe C:/xampp/htdocs/LinkedList/vendor/phpunit/phpunit/phpunit tests",
+        "stan": "vendor/bin/phpstan analyse src tests --level 9"
+    },
+    "require": {
+        "php": ">=8.2",
+        "ext-intl": "*"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^9"
+    }
+}
