@@ -1,12 +1,25 @@
 <?php declare(strict_types = 1);
 
+namespace LinkedList\Tests;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
 use LinkedList\LinkedList;
 
+/**
+ * Třída pro otestování spojení dvou seznamů
+ *
+ * @author: Anna Rývová (anna.ryvova@gmail.com)
+ * @copyright:Copyright (c) 2023, Anna Rývová
+ */
 class MergeTest extends TestCase
 {
+    /**
+     * Test pro oba prázdné seznamy
+     *
+     * @return void
+     */
     public function testBothLinkedListsAreEmpty(): void
     {
         $linkedList1 = new LinkedList();
@@ -17,6 +30,11 @@ class MergeTest extends TestCase
         self::assertSame('LinkedList počet prvků: 0, typ hodnot: int', $linkedList2->__toString());
     }
 
+    /**
+     * Test pro první seznam prázdný
+     *
+     * @return void
+     */
     public function testFirstLinkedListIsEmpty(): void
     {
         $linkedList1 = new LinkedList();
@@ -40,6 +58,11 @@ class MergeTest extends TestCase
         );
     }
 
+    /**
+     * Test pro druhý seznam prázdný
+     *
+     * @return void
+     */
     public function testSecondLinkedListIsEmpty(): void
     {
         $linkedList1 = new LinkedList();
@@ -63,7 +86,12 @@ class MergeTest extends TestCase
         );
     }
 
-    public function mergeToIntLists(): void
+    /**
+     * Test slučování int seznamů
+     *
+     * @return void
+     */
+    public function testMergeToIntLists(): void
     {
         $linkedList1 = new LinkedList();
         $linkedList1->add(3);
@@ -83,23 +111,29 @@ class MergeTest extends TestCase
         $linkedList2->add(14);
 
         self::assertSame(
+            'LinkedList počet prvků: 13, typ hodnot: int' . PHP_EOL .
             '1 (prev: null, next: 3)' . PHP_EOL .
-            '3 (prev 1, nex: 3)' . PHP_EOL .
-            '3 (prev3, next: 4)' . PHP_EOL .
-            '4 (prev: 3, next 5)' . PHP_EOL .
-            '5 (prev: 4, next 6)' . PHP_EOL .
+            '3 (prev: 1, next: 3)' . PHP_EOL .
+            '3 (prev: 3, next: 4)' . PHP_EOL .
+            '4 (prev: 3, next: 5)' . PHP_EOL .
+            '5 (prev: 4, next: 6)' . PHP_EOL .
             '6 (prev: 5, next: 6)' . PHP_EOL .
             '6 (prev: 6, next: 7)' . PHP_EOL .
             '7 (prev: 6, next: 10)' . PHP_EOL .
             '10 (prev: 7, next: 11)' . PHP_EOL .
             '11 (prev: 10, next: 12)' . PHP_EOL .
-            '12 (prev: 10, next 13)' . PHP_EOL .
+            '12 (prev: 11, next: 13)' . PHP_EOL .
             '13 (prev: 12, next: 14)' . PHP_EOL .
             '14 (prev: 13, next: null)',
             $linkedList1->merge($linkedList2)->__toString()
         );
     }
 
+    /**
+     * Test slučování string seznamů
+     *
+     * @return void
+     */
     public function testMergeToStingLists(): void
     {
         $linkedList1 = new LinkedList('string');
@@ -130,10 +164,7 @@ class MergeTest extends TestCase
         $expected->add('kočkodan');
         $expected->add('kočka');
 
-     //   echo $expected->__toString(); die;
         $mergedLinkedlist = $linkedList1->merge($linkedList2);
-
-    //    echo $mergedLinkedlist->__toString(); die;
 
         self::assertSame(11, $mergedLinkedlist->getCount());
 

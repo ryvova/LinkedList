@@ -3,7 +3,8 @@
     "description": "SortedLinkedListPackage",
     "autoload": {
         "psr-4": {
-            "LinkedList\\": "src/"
+            "LinkedList\\": "src/",
+            "LinkedList\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",

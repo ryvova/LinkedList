@@ -1,5 +1,7 @@
 <?php declare(strict_types = 1);
 
+namespace LinkedList\Tests;
+
 use PHPUnit\Framework\TestCase;
 use LinkedList\LinkedList;
 
@@ -11,6 +13,11 @@ use LinkedList\LinkedList;
  */
 class ToStringTest extends TestCase
 {
+    /**
+     * Test vyhledávání v prázdném seznamu
+     *
+     * @return void
+     */
     public function testEmptyList(): void
     {
         $list = new LinkedList();
@@ -18,6 +25,11 @@ class ToStringTest extends TestCase
         self::assertSame('LinkedList počet prvků: 0, typ hodnot: int', $list->__toString());
     }
 
+    /**
+     * Test vyhledávání v seznamu obsahujícím jen 1 node
+     *
+     * @return void
+     */
     public function testListWithOneNode(): void
     {
         $actual = new LinkedList();
@@ -30,6 +42,11 @@ class ToStringTest extends TestCase
         );
     }
 
+    /**
+     * Test vyhledávání v seznamu obsahujícím 2 node
+     *
+     * @return void
+     */
     public function testListWithTwoNode(): void
     {
         $actual = new LinkedList();
@@ -44,6 +61,11 @@ class ToStringTest extends TestCase
         );
     }
 
+    /**
+     * Test vyhledávání v seznamu obsahujícím více než 2 node
+     *
+     * @return void
+     */
     public function testListWithMoreThanTwoNodes(): void
     {
         $actual = new LinkedList();

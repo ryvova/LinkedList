@@ -373,17 +373,9 @@ class LinkedList
             /** @phpstan-ignore-next-line $linkedList->first nemůže být null, PHPStan to neví */
             $current2 = clone($linkedList->first);
 
-            echo $this->__toString(). PHP_EOL . PHP_EOL;
-            echo $linkedList->__toString() . PHP_EOL . PHP_EOL;
-            echo '------' . PHP_EOL . PHP_EOL;
-
-         //   $linkedList->delete($current2->getValue(), false);
-
             while ($current1 !== null && $linkedList->first !== null) {
-             //   echo '>' . $current1->getValue() . ' - ' . $current2->getValue() . PHP_EOL;
                 /** @phpstan-ignore-next-line $current2 ani $current1 nemůže být null, PHPStan to neví */
                 while (($this->compare($current2->getValue(), $current1->getValue()) <= 0) && $linkedList->first !== null) {
-                 //   echo $current1->getValue() . ' - ' . $current2->getValue() . PHP_EOL;
                     /** @phpstan-ignore-next-line $current2 nemůže být null, PHPStan to neví */
                     $current2->setPrev($current1->getPrev());
                     /** @phpstan-ignore-next-line $current2 nemůže být null, PHPStan to neví */
@@ -404,18 +396,11 @@ class LinkedList
                     if ($linkedList->first !== null) {
                         $current2 = clone($linkedList->first);
                     }
-
-                    echo $this->__toString() . PHP_EOL . PHP_EOL;
-                    echo $linkedList->__toString(). PHP_EOL . PHP_EOL;
-                    echo '------' . PHP_EOL . PHP_EOL;
-                 //   $current2 = $current2->getNext();
                 }
 
                 $current1 = $current1->getNext();
             }
         }
-
-        echo "xxxxxxxxxxxxxxxxxxxxx" . PHP_EOL . PHP_EOL;
 
         // to, co zbylo připoj na konec
         if ($linkedList->first !== null) {
@@ -430,10 +415,6 @@ class LinkedList
            $linkedList->first = $linkedList->first->getNext();
            unset($current);
            unset($linkedList);
-
-           echo $this->__toString() . PHP_EOL . PHP_EOL;
-           //  echo $linkedList->__toString(). PHP_EOL . PHP_EOL;
-           echo '------' . PHP_EOL . PHP_EOL;
         }
 
         return $this;

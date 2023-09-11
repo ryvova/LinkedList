@@ -12,6 +12,8 @@ When sorting two lists, I use the fact that they are both sorted. Of course, I c
 
 The assignment does not specify how the lists with string values should be sorted. I use sort by system settings. Since int values are compared using </=/> and string values using compare, I modified function compare so that it can also compare int values so that I don't have to find out what type the values are every time. Perhaps it would be more efficient to simply retype int to string and then use the compare.
 
+It would be worth considering that the Node contains not only the value, but also the number of times the value occurs. It would simplify adding and removing nodes - it would only be enough to increment/decrement the number and pointers would not have to be solved (unless all Nodes with a given value were deleted).
+
 I use the __toString() methods to clearly display information about lists for testing purposes (var_dump objects with pointers is very confusing). I want to be sure that the code is functional, so I wrote unit tests for it.
 
 Since you say you use your own rules for PHPStan, I also ran the code through PHPStan level 9.

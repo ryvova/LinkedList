@@ -1,9 +1,12 @@
 <?php declare(strict_types = 1);
 
+namespace LinkedList\Tests;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use LinkedList\Exceptions\InvalidValueNodeTypeException;
 use LinkedList\LinkedList;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Třída pro otestování metody add() pomocí PHPUnit testů
@@ -11,8 +14,13 @@ use LinkedList\LinkedList;
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
  */
-class AddTest extends \PHPUnit\Framework\TestCase
+class AddTest extends TestCase
 {
+    /**
+     * Test přidání hodnoty do int seznamu
+     *
+     * @return void
+     */
     public function testAddValuesIntoIntList(): void
     {
         $actual = new LinkedList();
@@ -31,8 +39,6 @@ class AddTest extends \PHPUnit\Framework\TestCase
         $expected->add(6);
         $expected->add(8);
 
-     //   self::assertEquals($expected, $actual);
-
         self::assertSame(
             'LinkedList počet prvků: 6, typ hodnot: int' . PHP_EOL .
             '1 (prev: null, next: 3)' . PHP_EOL .
@@ -45,6 +51,11 @@ class AddTest extends \PHPUnit\Framework\TestCase
         );
     }
 
+    /**
+     * Test přidání duplicitní hodnoty do int seznamu
+     *
+     * @return void
+     */
     public function testAddDuplicateValueIntoIntList(): void
     {
         $actual = new LinkedList();
@@ -81,6 +92,11 @@ class AddTest extends \PHPUnit\Framework\TestCase
         );
     }
 
+    /**
+     * Test přidání hodnoty do string seznamu
+     *
+     * @return void
+     */
     public function testAddValuesIntoStringList(): void
     {
         $actual = new LinkedList('string');
@@ -351,7 +367,7 @@ class AddTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test třídění stringového seznamu podle abecedy.
+     * Test přidání duplicitní hodnoty do string seznamu
      * Kontrolováno podle ČSN pro češtinu, viz https://www.pistorius.cz/img/download/21.pdf
      *
      * @return void

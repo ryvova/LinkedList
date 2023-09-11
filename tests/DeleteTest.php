@@ -1,13 +1,26 @@
 <?php declare(strict_types = 1);
 
+namespace LinkedList\Tests;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use LinkedList\Exceptions\NodeNotFoundException;
 use LinkedList\LinkedList;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Třída pro otestování metody delete() pomocí PHPUnit testů
+ *
+ * @author: Anna Rývová (anna.ryvova@gmail.com)
+ * @copyright:Copyright (c) 2023, Anna Rývová
+ */
 class DeleteTest extends TestCase
 {
+    /**
+     * Test smazání hodnoty z prázdného seznamu
+     *
+     * @return void
+     */
     public function testDeleteFromEmptyList(): void
     {
         $actual = new LinkedList();
@@ -21,6 +34,11 @@ class DeleteTest extends TestCase
         self::assertSame(0, $actual->getCount());
     }
 
+    /**
+     * Test smazání hodnoty, která není v seznamu
+     *
+     * @return void
+     */
     public function testDeleteValueWhichNotInList(): void
     {
         $actual = new LinkedList();
@@ -37,6 +55,11 @@ class DeleteTest extends TestCase
         self::assertSame(0, $actual->getCount());
     }
 
+    /**
+     * Test smazání hodnoty ze seznamu obsahujícího 1 hodnotu
+     *
+     * @return void
+     */
     public function testListContainsOneNode(): void
     {
         $value = 3;
@@ -50,6 +73,11 @@ class DeleteTest extends TestCase
         self::assertEquals('LinkedList počet prvků: 0, typ hodnot: int', $actual->__toString());
     }
 
+    /**
+     * Test smazání hodnoty ze seznamu obsahujícího stejné hodnoty
+     *
+     * @return void
+     */
     public function testAllValuesInListIsSame(): void
     {
         $value = 1;
@@ -65,6 +93,11 @@ class DeleteTest extends TestCase
         self::assertEquals('LinkedList počet prvků: 0, typ hodnot: int', $actual->__toString());
     }
 
+    /**
+     * Test smazání první hodnoty seznamu
+     *
+     * @return void
+     */
     public function testDeleteFirstValue(): void
     {
         $actual = new LinkedList();
@@ -91,6 +124,11 @@ class DeleteTest extends TestCase
         );
     }
 
+    /**
+     * Test smzání více hodnot ze začátku seznamu
+     *
+     * @return void
+     */
     public function testDeleteMoreValuesFromBegin(): void
     {
         $actual = new LinkedList();
@@ -132,6 +170,11 @@ class DeleteTest extends TestCase
         );
     }
 
+    /**
+     * Test smazání více hodnot z konce seznamu
+     *
+     * @return void
+     */
     public function testDeleteMoreValueFromEnd(): void
     {
         $actual = new LinkedList();
@@ -173,6 +216,11 @@ class DeleteTest extends TestCase
         );
     }
 
+    /**
+     * Test smazání více hodnot z prostředku seznamu
+     *
+     * @return void
+     */
     public function testDeleteFromMiddle(): void
     {
         $actual = new LinkedList();
@@ -223,6 +271,11 @@ class DeleteTest extends TestCase
         );
     }
 
+    /**
+     * Test smazání jen jedné hodnoty v případě více duplicitních hodnot
+     *
+     * @return void
+     */
     public function testDeleteOnlyOneValue(): void
     {
         $actual = new LinkedList();
