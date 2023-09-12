@@ -2,7 +2,6 @@
 
 namespace LinkedList;
 
-use LinkedList\Exceptions\InvalidValueNodeException;
 use LinkedList\Exceptions\NotImplementedException;
 
 /**
@@ -27,7 +26,7 @@ class Node
      * @param Node|null $next   následující prvek v seznamu
      */
     public function __construct(
-      private string|int $value, // node value
+      private readonly string|int $value, // node value
       private ?Node $prev,       // previous node
       private ?Node $next        // next node
     )
@@ -46,7 +45,10 @@ class Node
      * is scrolled.
      *
      * @param int|string $value
+     *
      * @return void
+     *
+     * @throws NotImplementedException method is not implemented - property is readonly
      */
     public function setValue(int|string $value): void
     {

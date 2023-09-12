@@ -7,7 +7,7 @@ use LinkedList\LinkedList;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Třída pro otestování metody add() pomocí PHPUnit testů
+ * A class for testing the add() method using PHPUnit tests
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
@@ -15,9 +15,11 @@ use PHPUnit\Framework\TestCase;
 class AddTest extends TestCase
 {
     /**
-     * Test přidání hodnoty do int seznamu
+     * Add values into int sorted linked list
      *
      * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testAddValuesIntoIntList(): void
     {
@@ -50,9 +52,11 @@ class AddTest extends TestCase
     }
 
     /**
-     * Test přidání duplicitní hodnoty do int seznamu
+     * Add duplicate values into sorted linked list
      *
      * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testAddDuplicateValueIntoIntList(): void
     {
@@ -91,9 +95,11 @@ class AddTest extends TestCase
     }
 
     /**
-     * Test přidání hodnoty do string seznamu
+     * Add values into string sorted linked list
      *
      * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testAddValuesIntoStringList(): void
     {
@@ -365,8 +371,8 @@ class AddTest extends TestCase
     }
 
     /**
-     * Test přidání duplicitní hodnoty do string seznamu
-     * Kontrolováno podle ČSN pro češtinu, viz https://www.pistorius.cz/img/download/21.pdf
+     * Add duplicate values into string sorted linked list
+     * see https://www.pistorius.cz/img/download/21.pdf
      *
      * @return void
      *
@@ -409,6 +415,13 @@ class AddTest extends TestCase
         );
     }
 
+    /**
+     * Add string value into int sorted linked list
+     *
+     * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad value type
+     */
     public function addStringValueIntoIntList(): void
     {
         $actual = new LinkedList();
@@ -422,6 +435,13 @@ class AddTest extends TestCase
         $this->assertSame('3', $actual->__toString());
     }
 
+    /**
+     * Add int value into string sorted linked list
+     *
+     * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad value type
+     */
     public function addIntValueIntoStringList(): void
     {
         $actual = new LinkedList('string');

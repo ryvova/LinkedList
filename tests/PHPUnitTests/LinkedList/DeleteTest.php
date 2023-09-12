@@ -2,12 +2,13 @@
 
 namespace LinkedList\Tests\LinkedList;
 
+use Exception;
 use LinkedList\Exceptions\NodeNotFoundException;
 use LinkedList\LinkedList;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Třída pro otestování metody delete() pomocí PHPUnit testů
+ * A class for testing the delete() method using PHPUnit tests
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
@@ -15,9 +16,11 @@ use PHPUnit\Framework\TestCase;
 class DeleteTest extends TestCase
 {
     /**
-     * Test smazání hodnoty z prázdného seznamu
+     * Test for deleting a value from an empty list
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testDeleteFromEmptyList(): void
     {
@@ -33,9 +36,11 @@ class DeleteTest extends TestCase
     }
 
     /**
-     * Test smazání hodnoty, která není v seznamu
+     * Test to delete a value that is not in the list
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testDeleteValueWhichNotInList(): void
     {
@@ -54,9 +59,11 @@ class DeleteTest extends TestCase
     }
 
     /**
-     * Test smazání hodnoty ze seznamu obsahujícího 1 hodnotu
+     * Test to delete a value from a list containing 1 value
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testListContainsOneNode(): void
     {
@@ -72,9 +79,11 @@ class DeleteTest extends TestCase
     }
 
     /**
-     * Test smazání hodnoty ze seznamu obsahujícího stejné hodnoty
+     * Test to delete a value from a list containing the same values
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testAllValuesInListIsSame(): void
     {
@@ -92,9 +101,11 @@ class DeleteTest extends TestCase
     }
 
     /**
-     * Test smazání první hodnoty seznamu
+     * Test to delete the first value of the list
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testDeleteFirstValue(): void
     {
@@ -123,9 +134,11 @@ class DeleteTest extends TestCase
     }
 
     /**
-     * Test smzání více hodnot ze začátku seznamu
+     * Test deleting multiple values from the beginning of the list
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testDeleteMoreValuesFromBegin(): void
     {
@@ -169,9 +182,11 @@ class DeleteTest extends TestCase
     }
 
     /**
-     * Test smazání více hodnot z konce seznamu
+     * Test for deleting multiple values from the end of the list
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testDeleteMoreValueFromEnd(): void
     {
@@ -215,9 +230,11 @@ class DeleteTest extends TestCase
     }
 
     /**
-     * Test smazání více hodnot z prostředku seznamu
+     * Test deleting multiple values from a list resource
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testDeleteFromMiddle(): void
     {
@@ -270,9 +287,11 @@ class DeleteTest extends TestCase
     }
 
     /**
-     * Test smazání jen jedné hodnoty v případě více duplicitních hodnot
+     * Test to delete only one value in case of multiple duplicate values
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function testDeleteOnlyOneValue(): void
     {

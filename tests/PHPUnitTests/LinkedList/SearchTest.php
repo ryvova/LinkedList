@@ -5,10 +5,11 @@ namespace LinkedList\Tests\LinkedList;
 use LinkedList\Exceptions\InvalidValueNodeTypeException;
 use LinkedList\Exceptions\NodeNotFoundException;
 use LinkedList\LinkedList;
+use LinkedList\Node;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Třída pro vyhledávání v seznamu
+ * A class for searching in a list
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
@@ -16,9 +17,12 @@ use PHPUnit\Framework\TestCase;
 class SearchTest extends TestCase
 {
     /**
-     * Test vyhledávání v prázdném seznamu
+     * Test search in empty list
      *
      * @return void
+     *
+     * @throws NodeNotFoundException         A node with the specified value was not found in the list
+     * @throws InvalidValueNodeTypeException The searched value is of a different type than the values in the list
      */
     public function testSearchInEmptyList(): void
     {
@@ -34,9 +38,12 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Test vyhledávání string hodnoty v int seznamu
+     * test search string value in int list
      *
      * @return void
+     *
+     * @throws NodeNotFoundException         A node with the specified value was not found in the list
+     * @throws InvalidValueNodeTypeException The searched value is of a different type than the values in the list
      */
     public function testSearchStringValueInIntLinkedList(): void
     {
@@ -54,9 +61,12 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Test vyhledávání int hodnoty ve string seznamu
+     * Test search int value in string list
      *
      * @return void
+     *
+     * @throws NodeNotFoundException         A node with the specified value was not found in the list
+     * @throws InvalidValueNodeTypeException The searched value is of a different type than the values in the list
      */
     public function testSearchIntValueInStringLinkedList(): void
     {
@@ -74,9 +84,12 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Test vyhledávání vyhledávání hodnoty v seznamu, kde se každá hodnota vyskytuje jen 1x
+     * The search test searches for a value in a list where each value occurs only 1 time
      *
      * @return void
+     *
+     * @throws NodeNotFoundException         A node with the specified value was not found in the list
+     * @throws InvalidValueNodeTypeException The searched value is of a different type than the values in the list
      */
     public function testSingleValueIsInList(): void
     {
@@ -90,12 +103,12 @@ class SearchTest extends TestCase
 
         $current = $actual->getFirst();
         for ($i = 1; $i <= $value; $i++) {
-            /** $current nemůže být null, ale PHPStan to nevidí */
-            if ($current?->getValue() === $value) {
+            /** @var Node $current */
+            if ($current->getValue() === $value) {
                 $expected[] = clone($current);
             }
 
-            $current = $current?->getNext();
+            $current = $current->getNext();
         }
 
         self::assertEquals(
@@ -105,9 +118,12 @@ class SearchTest extends TestCase
     }
 
     /**
-     * Test vyhledávání hodnoty, která se v seznamu vyskytuje vícekrát
+     * Test to find a value that occurs more than once in a list
      *
      * @return void
+     *
+     * @throws NodeNotFoundException         A node with the specified value was not found in the list
+     * @throws InvalidValueNodeTypeException The searched value is of a different type than the values in the list
      */
     public function testMultipleValuesIsInList(): void
     {
@@ -126,13 +142,12 @@ class SearchTest extends TestCase
 
         $current = $actual->getFirst();
         for ($i = 1; $i <= 7; $i++) {
-            /** $current nemůže být null, ale PHPStan to nevidí */
-            if ($current?->getValue() === $value) {
+            /** @var Node $current */
+            if ($current->getValue() === $value) {
                 $expected[] = clone($current);
             }
 
-            // null být nemůže, ale PHPStan to nevidí
-            $current = $current?->getNext();
+            $current = $current->getNext();
         }
 
         self::assertEquals(
@@ -145,6 +160,9 @@ class SearchTest extends TestCase
      * Test vyhledávání hodnoty, která není v seznamu
      *
      * @return void
+     *
+     * @throws NodeNotFoundException         A node with the specified value was not found in the list
+     * @throws InvalidValueNodeTypeException The searched value is of a different type than the values in the list
      */
     public function testValueIsNotInList(): void
     {

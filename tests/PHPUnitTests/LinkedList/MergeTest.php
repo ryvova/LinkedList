@@ -2,11 +2,13 @@
 
 namespace LinkedList\Tests\LinkedList;
 
+use LinkedList\Exceptions\InvalidListTypeException;
+use LinkedList\Exceptions\InvalidValueNodeTypeException;
 use LinkedList\LinkedList;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Třída pro otestování spojení dvou seznamů
+ * A class for testing the union of two lists
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
@@ -14,9 +16,11 @@ use PHPUnit\Framework\TestCase;
 class MergeTest extends TestCase
 {
     /**
-     * Test pro oba prázdné seznamy
+     * Test for both empty lists
      *
      * @return void
+     *
+     * @throws InvalidListTypeException      lists do not have the same value type
      */
     public function testBothLinkedListsAreEmpty(): void
     {
@@ -29,9 +33,12 @@ class MergeTest extends TestCase
     }
 
     /**
-     * Test pro první seznam prázdný
+     * Test for first list empty
      *
      * @return void
+     *
+     * @throws InvalidListTypeException      lists do not have the same value type
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testFirstLinkedListIsEmpty(): void
     {
@@ -57,9 +64,12 @@ class MergeTest extends TestCase
     }
 
     /**
-     * Test pro druhý seznam prázdný
+     * Test for the second list empty
      *
      * @return void
+     *
+     * @throws InvalidListTypeException      lists do not have the same value type
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testSecondLinkedListIsEmpty(): void
     {
@@ -85,9 +95,12 @@ class MergeTest extends TestCase
     }
 
     /**
-     * Test slučování int seznamů
+     * Test merging int lists
      *
      * @return void
+     *
+     * @throws InvalidListTypeException      lists do not have the same value type
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testMergeToIntLists(): void
     {
@@ -128,9 +141,12 @@ class MergeTest extends TestCase
     }
 
     /**
-     * Test slučování string seznamů
+     * Test merging string lists
      *
      * @return void
+     *
+     * @throws InvalidListTypeException      lists do not have the same value type
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testMergeToStingLists(): void
     {
@@ -181,5 +197,58 @@ class MergeTest extends TestCase
                     'koza (prev: kodér, next: null)',
             $mergedLinkedlist->__toString()
         );
+    }
+
+    /**
+     * Test merging string list into int list
+     *
+     * @return void
+     *
+     * @throws InvalidListTypeException      lists do not have the same value type
+     * @throws InvalidValueNodeTypeException bad node value type
+     */
+    public function testMergeStringListIntoIntList(): void
+    {
+        $list1 = new LinkedList();
+        for ($i = 1; $i <= 5; $i++) {
+            $list1->add($i);
+        }
+
+        $list2 = new LinkedList("string");
+        $list2->add('a');
+
+        $expectedException = new InvalidListTypeException();
+        $this->expectExceptionObject($expectedException);
+
+        $list1->merge($list2);
+
+        self::assertTrue(true);
+    }
+
+    /**
+     * Test merging int list into string list
+     *
+     * @return void
+     *
+     * @throws InvalidListTypeException      lists do not have the same value type
+     * @throws InvalidValueNodeTypeException bad node value type
+     */
+    public function testMergeIntListIntoStringList(): void
+    {
+        $list1 = new LinkedList('string');
+        $list1->add('auto');
+        $list1->add('bota');
+
+        $list2 = new LinkedList();
+        for ($i = 1; $i <= 5; $i++) {
+            $list2->add($i);
+        }
+
+        $expectedException = new InvalidListTypeException();
+        $this->expectExceptionObject($expectedException);
+
+        $list1->merge($list2);
+
+        self::assertTrue(true);
     }
 }

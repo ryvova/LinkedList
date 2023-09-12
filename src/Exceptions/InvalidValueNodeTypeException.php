@@ -29,14 +29,4 @@ use Throwable;
 
         parent::__construct($message, $code, $previous);
     }
-
-    /**
-     * Vypíše výjimku jako text
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return __CLASS__ . ": \n  kód: {$this->code}, \n  message: {$this->message}\n";
-    }
 }
