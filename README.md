@@ -11,7 +11,10 @@ I used a two-way linked list.
   - if I know, for example, that the data in the sorted list has a normal distribution, I can adjust the method for adding/deleting so that when the min. value 1, max 10000 and I will want to insert/delete 7000, so I will traverse from back to front.
 - The disadvantage is: A higher memory requirement (each node must contain a link not only to the next one, but also to the previous one).
 
-To decide whether to choose a one-way/two-way linked list and whether to sort it in ascending/descending order, it would be necessary to know more about what it is to be used for, how the data that will be filled into it will look like, if, for example, the data will go in sorted order, than we can modify add to add to the beginning/end, how important is time or memory consumption etc.
+To decide whether to choose a one-way/two-way linked list and whether to sort it in ascending/descending order, it would be necessary to know more about:
+- What it is to be used for, 
+- How the data that will be filled into it will look like, if, for example, the data will go in sorted order, than we can modify add to add to the beginning/end, 
+- How important is time or memory consumption etc.
 
 When merging two lists, I use the fact that they are both sorted. Of course, I could call the add() method on each element of the list being added, which would go through the first list from the beginning and put it in the right place. Since they are both sorted, I just need to remember the pointer to where I added the element in the list I'm adding to and continue from there.
 
@@ -26,5 +29,7 @@ I use the __toString() methods to clearly display information about lists for te
 Since you say you use your own rules for PHPStan, I also ran the code through PHPStan level 9.
 
 I never use recursion due to extreme memory requirements.
+
+I wanted to be sure that the code works, so I also wrote PHPUnit tests for the methods.
 
 It should be a libraty, so I registered the code as a package on packagist.org as ryvova/linkedlist
