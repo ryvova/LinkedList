@@ -2,11 +2,12 @@
 
 namespace LinkedList\Tests\LinkedList;
 
+use LinkedList\Exceptions\InvalidValueNodeTypeException;
 use LinkedList\LinkedList;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Třída pro otestování metody __toString() pomocí PHPUnit testů
+ * A class for testing the __toString() method using PHPUnit tests
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
@@ -14,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 class ToStringTest extends TestCase
 {
     /**
-     * Test vyhledávání v prázdném seznamu
+     * Test for writing an empty list as a string
      *
      * @return void
      */
@@ -26,9 +27,11 @@ class ToStringTest extends TestCase
     }
 
     /**
-     * Test vyhledávání v seznamu obsahujícím jen 1 node
+     * Test for writing a list containing 1 node
      *
      * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testListWithOneNode(): void
     {
@@ -43,9 +46,11 @@ class ToStringTest extends TestCase
     }
 
     /**
-     * Test vyhledávání v seznamu obsahujícím 2 node
+     * Test for writing a list containing 2 nodes
      *
      * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testListWithTwoNode(): void
     {
@@ -62,9 +67,11 @@ class ToStringTest extends TestCase
     }
 
     /**
-     * Test vyhledávání v seznamu obsahujícím více než 2 node
+     * Test for writing a list containing more than 2 nodes
      *
      * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad node value type
      */
     public function testListWithMoreThanTwoNodes(): void
     {
@@ -85,4 +92,4 @@ class ToStringTest extends TestCase
             $actual->__toString()
         );
     }
-}
+ }

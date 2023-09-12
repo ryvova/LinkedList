@@ -90,7 +90,8 @@ class LinkedList
      *
      * @param int|string $value
      * @return void
-     * @throws Exception
+     *
+     * @throws Exception the value cannot be at the beginning of the list
      */
     public function unshift(int|string $value): void {
         if (!(((is_int($value) === true) && ($this->type === 'int')) ||
