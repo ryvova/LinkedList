@@ -25,7 +25,7 @@ class MergeTest extends TestCase
 
         self::assertEquals($linkedList2, $linkedList1->merge($linkedList2));
         self::assertSame(0, $linkedList1->merge($linkedList2)->getCount());
-        self::assertSame('LinkedList počet prvků: 0, typ hodnot: int', $linkedList2->__toString());
+        self::assertSame('LinkedList number of nodes: 0, values type: int', $linkedList2->__toString());
     }
 
     /**
@@ -48,7 +48,7 @@ class MergeTest extends TestCase
         self::assertSame(3, $mergedList->getCount());
 
         self::assertSame(
-            'LinkedList počet prvků: 3, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 3, values type: int' . PHP_EOL .
             '1 (prev: null, next: 2)' . PHP_EOL .
             '2 (prev: 1, next: 3)' . PHP_EOL .
             '3 (prev: 2, next: null)',
@@ -76,7 +76,7 @@ class MergeTest extends TestCase
         self::assertSame(3, $mergedList->getCount());
 
         self::assertSame(
-            'LinkedList počet prvků: 3, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 3, values type: int' . PHP_EOL .
             '1 (prev: null, next: 2)' . PHP_EOL .
             '2 (prev: 1, next: 3)' . PHP_EOL .
             '3 (prev: 2, next: null)',
@@ -109,7 +109,7 @@ class MergeTest extends TestCase
         $linkedList2->add(14);
 
         self::assertSame(
-            'LinkedList počet prvků: 13, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 13, values type: int' . PHP_EOL .
             '1 (prev: null, next: 3)' . PHP_EOL .
             '3 (prev: 1, next: 3)' . PHP_EOL .
             '3 (prev: 3, next: 4)' . PHP_EOL .
@@ -167,7 +167,7 @@ class MergeTest extends TestCase
         self::assertSame(11, $mergedLinkedlist->getCount());
 
         self::assertSame(
-            'LinkedList počet prvků: 11, typ hodnot: string' . PHP_EOL .
+            'LinkedList number of nodes: 11, values type: string' . PHP_EOL .
                     'kačka (prev: null, next: Katka)' . PHP_EOL .
                     'Katka (prev: kačka, next: kocour)' . PHP_EOL .
                     'kocour (prev: Katka, next: kočí)' . PHP_EOL .

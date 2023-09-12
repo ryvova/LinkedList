@@ -22,7 +22,7 @@ class ToStringTest extends TestCase
     {
         $list = new LinkedList();
 
-        self::assertSame('LinkedList počet prvků: 0, typ hodnot: int', $list->__toString());
+        self::assertSame('LinkedList number of nodes: 0, values type: int', $list->__toString());
     }
 
     /**
@@ -36,7 +36,7 @@ class ToStringTest extends TestCase
         $actual->add(7);
 
         self::assertSame(
-            'LinkedList počet prvků: 1, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 1, values type: int' . PHP_EOL .
             '7 (prev: null, next: null)',
             $actual->__toString()
         );
@@ -54,7 +54,7 @@ class ToStringTest extends TestCase
         $actual->add(1);
 
         self::assertSame(
-            'LinkedList počet prvků: 2, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 2, values type: int' . PHP_EOL .
             '1 (prev: null, next: 2)' . PHP_EOL .
             '2 (prev: 1, next: null)',
             $actual->__toString()
@@ -76,7 +76,7 @@ class ToStringTest extends TestCase
         $actual->add(1);
 
         self::assertSame(
-            'LinkedList počet prvků: 5, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 5, values type: int' . PHP_EOL .
             '1 (prev: null, next: 2)' . PHP_EOL .
             '2 (prev: 1, next: 3)' . PHP_EOL .
             '3 (prev: 2, next: 4)' . PHP_EOL .

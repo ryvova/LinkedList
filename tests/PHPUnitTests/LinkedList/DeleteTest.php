@@ -68,7 +68,7 @@ class DeleteTest extends TestCase
 
         self::assertEquals(new LinkedList(), $actual);
         self::assertSame(0, $actual->getCount());
-        self::assertEquals('LinkedList počet prvků: 0, typ hodnot: int', $actual->__toString());
+        self::assertEquals('LinkedList number of nodes: 0, values type: int', $actual->__toString());
     }
 
     /**
@@ -88,7 +88,7 @@ class DeleteTest extends TestCase
 
         self::assertEquals(new LinkedList(), $actual);
         self::assertSame(0, $actual->getCount());
-        self::assertEquals('LinkedList počet prvků: 0, typ hodnot: int', $actual->__toString());
+        self::assertEquals('LinkedList number of nodes: 0, values type: int', $actual->__toString());
     }
 
     /**
@@ -113,7 +113,7 @@ class DeleteTest extends TestCase
         self::assertSame(4, $actual->getCount());
 
         self::assertSame(
-            'LinkedList počet prvků: 4, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 4, values type: int' . PHP_EOL .
             '2 (prev: null, next: 3)' . PHP_EOL .
             '3 (prev: 2, next: 4)' . PHP_EOL .
             '4 (prev: 3, next: 5)' . PHP_EOL .
@@ -155,7 +155,7 @@ class DeleteTest extends TestCase
         self::assertSame(8, $actual->getCount());
 
         self::assertSame(
-            'LinkedList počet prvků: 8, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 8, values type: int' . PHP_EOL .
             '2 (prev: null, next: 3)' . PHP_EOL .
             '3 (prev: 2, next: 3)' . PHP_EOL .
             '3 (prev: 3, next: 3)' . PHP_EOL .
@@ -201,7 +201,7 @@ class DeleteTest extends TestCase
         self::assertSame(8, $actual->getCount());
 
         self::assertSame(
-            'LinkedList počet prvků: 8, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 8, values type: int' . PHP_EOL .
             '1 (prev: null, next: 1)' . PHP_EOL .
             '1 (prev: 1, next: 1)' . PHP_EOL .
             '1 (prev: 1, next: 2)' . PHP_EOL .
@@ -256,7 +256,7 @@ class DeleteTest extends TestCase
         self::assertSame(8, $actual->getCount());
 
         self::assertSame(
-            'LinkedList počet prvků: 8, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 8, values type: int' . PHP_EOL .
             '1 (prev: null, next: 1)' . PHP_EOL .
             '1 (prev: 1, next: 1)' . PHP_EOL .
             '1 (prev: 1, next: 2)' . PHP_EOL .
@@ -289,7 +289,7 @@ class DeleteTest extends TestCase
         $actual->delete(3, false);
 
         self::assertSame(
-            'LinkedList počet prvků: 10, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 10, values type: int' . PHP_EOL .
             '1 (prev: null, next: 1)' . PHP_EOL .
             '1 (prev: 1, next: 1)' . PHP_EOL .
             '1 (prev: 1, next: 2)' . PHP_EOL .

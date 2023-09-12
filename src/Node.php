@@ -6,7 +6,7 @@ use LinkedList\Exceptions\InvalidValueNodeException;
 use LinkedList\Exceptions\NotImplementedException;
 
 /**
- * Class implements Node in double sorted double linked list
+ * A class implements Node in double sorted double linked list
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
@@ -27,9 +27,9 @@ class Node
      * @param Node|null $next   následující prvek v seznamu
      */
     public function __construct(
-      private string|int $value,
-      private ?Node $prev,
-      private ?Node $next
+      private string|int $value, // node value
+      private ?Node $prev,       // previous node
+      private ?Node $next        // next node
     )
     {
     }
@@ -63,6 +63,9 @@ class Node
     /**
      * Set pointer to the previous Node in sorted linked list
      *
+     * A node can be part of any list, not just a sorted one, so I don't check the value against the value
+     * of the previous node
+     *
      * @param Node|null $prev
      *
      * @return void
@@ -80,11 +83,12 @@ class Node
     /**
      * Set pointer to next Node in sorted linked list
      *
+     * A node can be part of any list, not just a sorted one, so I don't check the value against the value
+     * of the previous node
+     *
      * @param Node|null $next
      *
      * @return void
-     *
-     * @throws InvalidValueNodeException Node value is higher than next Node value
      */
     public function setNext(?Node $next): void
     {

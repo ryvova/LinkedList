@@ -38,7 +38,7 @@ class AddTest extends TestCase
         $expected->add(8);
 
         self::assertSame(
-            'LinkedList počet prvků: 6, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 6, values type: int' . PHP_EOL .
             '1 (prev: null, next: 3)' . PHP_EOL .
             '3 (prev: 1, next: 4)' . PHP_EOL .
             '4 (prev: 3, next: 5)' . PHP_EOL .
@@ -77,7 +77,7 @@ class AddTest extends TestCase
 
         self::assertEquals($expected, $actual);
         self::assertSame(
-            'LinkedList počet prvků: 8, typ hodnot: int' . PHP_EOL .
+            'LinkedList number of nodes: 8, values type: int' . PHP_EOL .
             '1 (prev: null, next: 1)' . PHP_EOL .
             '1 (prev: 1, next: 2)' . PHP_EOL .
             '2 (prev: 1, next: 3)' . PHP_EOL .
@@ -274,7 +274,7 @@ class AddTest extends TestCase
         self::assertEquals($expected, $actual);
 
         self::assertSame(
-            'LinkedList počet prvků: 85, typ hodnot: string' . PHP_EOL .
+            'LinkedList number of nodes: 85, values type: string' . PHP_EOL .
             'a (prev: null, next: A)' . PHP_EOL .
             'A (prev: a, next: b)' . PHP_EOL .
             'b (prev: A, next: B)' . PHP_EOL .
@@ -396,7 +396,7 @@ class AddTest extends TestCase
 
         self::assertEquals($expected, $actual);
         self::assertSame(
-            'LinkedList počet prvků: 8, typ hodnot: string' . PHP_EOL .
+            'LinkedList number of nodes: 8, values type: string' . PHP_EOL .
             'bál (prev: null, next: bál)' . PHP_EOL .
             'bál (prev: bál, next: baroko)' . PHP_EOL .
             'baroko (prev: bál, next: bé)' . PHP_EOL .
@@ -417,7 +417,7 @@ class AddTest extends TestCase
         $expectedException = new InvalidValueNodeTypeException();
         $this->expectExceptionObject($expectedException);
 
-        $actual->$actual->add('Tohle spadne na InvalidValueNodeTypeException');
+        $actual->$actual->add('error');
 
         $this->assertSame('3', $actual->__toString());
     }
