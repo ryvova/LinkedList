@@ -4,7 +4,7 @@
     "autoload": {
         "psr-4": {
             "LinkedList\\": "src/",
-            "LinkedList\\Tests\\": "tests/Tests/"
+            "LinkedList\\Tests\\": "tests/PHPUnitTests/"
         }
     },
     "minimum-stability": "dev",

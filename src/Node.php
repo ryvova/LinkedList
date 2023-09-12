@@ -2,19 +2,25 @@
 
 namespace LinkedList;
 
-use _PHPStan_dfcaa3082\Nette\NotImplementedException;
+use LinkedList\Exceptions\InvalidValueNodeException;
+use LinkedList\Exceptions\NotImplementedException;
 
-require __DIR__ . '/../vendor/autoload.php';
-
+/**
+ * Class implements Node in double sorted double linked list
+ *
+ * @author: Anna Rývová (anna.ryvova@gmail.com)
+ * @copyright:Copyright (c) 2023, Anna Rývová
+ */
 class Node
 {
     /**
-     * Vytvoří nový Node.
+     * Create a new Node.
      *
-     * Případně je možno si vystačit jen s $next ukazateli, ovšem výrazně se tím zkomplikuje odebrání posledního prvku
-     * v seznamu (bude nutné prolézt celý seznam od začátku až do konce jen proto, aby se poslednímu nastavilo next
-     * na null). Samozřejmě ukazatelé zabírají nějaké místo v paměti. Nutno zvážit, jak často se bude poslední prvek
-     * odebírat a co je důležitější, zda časová nebo paměťová náročnost.
+     * Alternatively, it is possible to make do with just $next pointers, but this will significantly complicate
+     * the removal of the last element in a list (it will be necessary to traverse the entire list from beginning
+     * to end just to set next to the last one to null). Of course pointers take up some space in memory.
+     * It is necessary to consider how often the last element will be deleted and and whether time or memory
+     * consumption is more important.
      *
      * @param string|int $value hodnota musí odpovídat typu celého seznamu
      * @param Node|null $prev   předchozí prvek v seznamu
@@ -26,7 +32,6 @@ class Node
       private ?Node $next
     )
     {
-
     }
 
     public function getValue(): int|string
@@ -35,16 +40,19 @@ class Node
     }
 
     /**
-     * Neimplementováno. Ochrana proti tomu, aby někdo nemohl změnit hodnotu na jiný typ než je
-     * (v konstruktoru se kontroluje, že je stejného typu jako celý seznam). Vzhledem k tomu, že je seznam
-     * setříděný, tak by se při změně hodnoty stejně musel řešit i případný přesun.
+     * Not implemented. Since the list is sorted, in addition to checking the type of the value, one would have to move
+     * the Node to the corresponding place in the list if the Node is in any list. If necessary, it could be programmed
+     * so that if the new value is lower, only the previous part of the list is scrolled, otherwise the next part
+     * is scrolled.
      *
      * @param int|string $value
      * @return void
      */
     public function setValue(int|string $value): void
     {
-        throw new NotImplementedException('Neimplementováno. Použij delete() a add()');
+        throw new NotImplementedException(
+            'Not implemented. To change the value in a Node in the list, use delete() and add()'
+        );
     }
 
     public function getPrev(): ?Node
@@ -52,6 +60,13 @@ class Node
         return $this->prev;
     }
 
+    /**
+     * Set pointer to the previous Node in sorted linked list
+     *
+     * @param Node|null $prev
+     *
+     * @return void
+     */
     public function setPrev(?Node $prev): void
     {
         $this->prev = $prev;
@@ -62,11 +77,25 @@ class Node
         return $this->next;
     }
 
+    /**
+     * Set pointer to next Node in sorted linked list
+     *
+     * @param Node|null $next
+     *
+     * @return void
+     *
+     * @throws InvalidValueNodeException Node value is higher than next Node value
+     */
     public function setNext(?Node $next): void
     {
         $this->next = $next;
     }
 
+    /**
+     * Convert Node into list. For testing purposes.
+     *
+     * @return String
+     */
     public function __toString(): String
     {
         $textPrev =

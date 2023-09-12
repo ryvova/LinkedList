@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace LinkedList\Tests;
+namespace LinkedList\Tests\LinkedList;
 
-use PHPUnit\Framework\TestCase;
 use LinkedList\Exceptions\InvalidValueNodeTypeException;
 use LinkedList\Exceptions\NodeNotFoundException;
 use LinkedList\LinkedList;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Třída pro vyhledávání v seznamu

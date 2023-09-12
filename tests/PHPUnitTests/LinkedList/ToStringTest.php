@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace LinkedList\Tests;
+namespace LinkedList\Tests\LinkedList;
 
-use PHPUnit\Framework\TestCase;
 use LinkedList\LinkedList;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Třída pro otestování metody __toString() pomocí PHPUnit testů

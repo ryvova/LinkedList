@@ -1,8 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace LinkedList\Tests;
-
-require __DIR__ . '/../vendor/autoload.php';
+namespace LinkedList\Tests\LinkedList;
 
 use LinkedList\Exceptions\InvalidValueNodeTypeException;
 use LinkedList\LinkedList;

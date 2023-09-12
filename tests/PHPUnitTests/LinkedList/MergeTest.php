@@ -1,11 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace LinkedList\Tests;
+namespace LinkedList\Tests\LinkedList;
 
-require __DIR__ . '/../vendor/autoload.php';
-
-use PHPUnit\Framework\TestCase;
 use LinkedList\LinkedList;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Třída pro otestování spojení dvou seznamů

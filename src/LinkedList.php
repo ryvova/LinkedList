@@ -8,8 +8,6 @@ use LinkedList\Exceptions\InvalidListTypeException;
 use LinkedList\Exceptions\InvalidValueNodeTypeException;
 use LinkedList\Exceptions\NodeNotFoundException;
 
-require __DIR__ . '/../vendor/autoload.php';
-
 /**
  * Třída pro práci se setříděným spojovým seznamem.
  *
@@ -56,7 +54,7 @@ class LinkedList
         // aby třídilo Praha 1, Praha 3 a Praha 10 v tomto pořadí
         $collator->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
 
-        $this->collator = $collator;
+        $this->collator = $collator; 
     }
 
     public function getFirst(): ?Node
@@ -174,14 +172,17 @@ class LinkedList
             $this->count = 1;
         }
         // > než nejvyšší hodnota - přidávám na konec
+      //  elseif ($this->compare($value, $this->last->getValue()) === 1) {
         elseif ($this->compare($value, $this->last->getValue()) === 1) {
             $this->push($value);
         }
         // <= nejnižší hodnota - přidávám na začátek
+    //    elseif ($this->compare($value, $this->first->getValue()) === -1) {
         elseif ($this->compare($value, $this->first->getValue()) === -1) {
             $this->unshift($value);
         }
         // = nejvyšší hodnotě - přidám před poslední prvek
+      //  elseif ($this->compare($value, $this->last->getValue()) === 0) {
         elseif ($this->compare($value, $this->last->getValue()) === 0) {
             $node = new Node($value, $this->last->getPrev(), $this->last);
 
@@ -199,11 +200,13 @@ class LinkedList
         else {
             /** @var Node $current */
             $current = $this->first;
+        //    while ($this->compare($current->getValue(), $value) === -1) {
             while ($this->compare($current->getValue(), $value) === -1) {
                 /** @var Node $current */
                 $current = $current->getNext();
             }
 
+        //    if ($this->compare($current->getValue(), $value) >= 0) {
             if ($this->compare($current->getValue(), $value) >= 0) {
                 $node = new Node($value, $current->getPrev(), $current);
                 if ($current->getPrev() !== null) {
@@ -246,10 +249,11 @@ class LinkedList
         $current = $this->first;
 
         // je to 1. prvek seznamu
-        if ($this->first->getValue() === $value) {
+      //  if ($this->first->getValue() === $value) {
+        if ($this->compare($this->first->getValue(), $value) === 0) {
             if (
                 ($this->count === 1) ||                                  // seznam má jen 1 Node
-                ($this->first->getValue() === $this->last->getValue()) // všechny Node mají stejnou hodnotu
+                ($this->compare($this->first->getValue(), $this->last->getValue()) === 0) // všechny Node mají stejnou hodnotu
             ) {
                 while ($this->first !== null) {
                     $this->shift();
@@ -273,6 +277,7 @@ class LinkedList
                 // smaž všechny Node se stejnou hodnotou (musí být za sebou - je to setříděný seznam)
                 do {
                     $current = $this->first;
+                    /** @phpstan-ignore-next-line $this->first nemůže být null, PHPStan to neví */
                     $this->first = $this->first->getNext();
                     $this->first?->setPrev(null);
                     unset($current);
@@ -281,7 +286,11 @@ class LinkedList
                 }
                 // first nemůže být null, ale PHPStan to nevidí
                 while (
-                    ($this->first?->getValue() === $value) &&
+                    /** @phpstan-ignore-next-line $this->first nemůže být null, PHPStan to neví */
+                    ($this->first->getValue() === $value) &&
+                    /** @phpstan-ignore-next-line $this->first nemůže být null, PHPStan to neví */
+                    ($this->compare($this->first->getValue(), $value) === 0)
+                    /** @phpstan-ignore-next-line $this->first nemůže být null, PHPStan to neví */
                     ($this->first->getNext() !== null) &&
                     ($deleteAllNodesWithValue === true)
                 );
@@ -291,7 +300,7 @@ class LinkedList
         }
         // je to poslední prvek sezamu
         // last nemůže být null, ale PHPStan to nevidí
-        elseif ($this->last->getValue() === $value) {
+        elseif ($this->compare($this->last->getValue(), $value) === 0) {
             // smaž všechny Node se stejnou hodnotou (musí být za sebou - je to setříděný seznam)
             do {
                 $current = $this->last;
@@ -427,22 +436,19 @@ class LinkedList
             /** @phpstan-ignore-next-line $linkedList->first nemůže být null, PHPStan to neví */
             $current2 = clone($linkedList->first);
 
+            /** @var Node $current1 */
+            /** @var Node $current2 */
             while ($current1 !== null && $linkedList->first !== null) {
-                /** @phpstan-ignore-next-line $current2 ani $current1 nemůže být null, PHPStan to neví */
                 while (($this->compare($current2->getValue(), $current1->getValue()) <= 0) && $linkedList->first !== null) {
-                    /** @phpstan-ignore-next-line $current2 nemůže být null, PHPStan to neví */
                     $current2->setPrev($current1->getPrev());
-                    /** @phpstan-ignore-next-line $current2 nemůže být null, PHPStan to neví */
                     $current2->setNext($current1);
                     $current1->setPrev($current2);
                     $this->count++;
 
-                    /** @phpstan-ignore-next-line $current2 nemůže být null, PHPStan to neví */
                     if ($current2->getPrev() === null) {
                         $this->first = $current2;
                     }
                     else {
-                        /** @phpstan-ignore-next-line $current2 nemůže být null, PHPStan to neví */
                         $current2->getPrev()->setNext($current2);
                     }
 
@@ -529,6 +535,7 @@ class LinkedList
         }
         else {
             // uvozovky kvůli PHPStanu
+           // $compare = $this->compare("{$value1}", "{$value2}");
             $compare = $this->collator->compare("{$value1}", "{$value2}");
 
             if ($compare !== false) {
