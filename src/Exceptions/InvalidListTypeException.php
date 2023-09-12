@@ -6,7 +6,7 @@ use Exception;
 use Throwable;
 
 /**
- * Třída pro vytvoření výjimky pro chybný typ seznamu
+ * A class to throw an exception for a bad list type
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
@@ -14,7 +14,7 @@ use Throwable;
 class InvalidListTypeException extends Exception
 {
     public function __construct(
-        string $message = 'oba seznamy musí být stejného typu',
+        string $message = 'both lists must be of the same type',
         int $code = 0,
         Throwable $previous = null
     ) {

@@ -6,7 +6,7 @@ use Exception;
 use Throwable;
 
 /**
- * Třída pro pro vytvoření výjimky pro volání neimplementované fce
+ * Class for to throw an exception for calls to unimplemented function
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová

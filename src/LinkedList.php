@@ -38,11 +38,13 @@ class LinkedList
     private Collator $collator;
 
     /**
-     * @param string $type typ hodnot v seznamu
+     * @param string $type nodes value type
      *
      * @throws Exception
      */
-    public function __construct(string $type = 'int') {
+    public function __construct(
+        string $type = 'int' // nodes value type
+    ) {
         $this->type = $type;
 
         // for sorting according to system settings
@@ -167,6 +169,9 @@ class LinkedList
      *
      * @param int|string $value
      * @return void
+     *
+     * @throws InvalidValueNodeTypeException bad type node value
+     * @throws Exception compare exception
      */
     public function add(int|string $value): void
     {
@@ -246,6 +251,8 @@ class LinkedList
      * @param bool $deleteAllNodesWithValue true - removes all nodes with the specified value, false - removes only the 1st occurrence
      *
      * @return void
+     *
+     * @throws Exception compare error
      */
     public function delete(string|int $value, bool $deleteAllNodesWithValue = true): void
     {
@@ -257,7 +264,7 @@ class LinkedList
         $current = $this->first;
 
         if ($this->compare($this->first->getValue(), $value) === 0) {
-            // The sorted linked list contains only one element or they all have the same value -
+            // The sorted linked list contains only one element, or they all have the same value -
             // I delete everything in the list
             if (
                 ($this->count === 1) ||                                                   // the list contains only 1 node
@@ -308,7 +315,7 @@ class LinkedList
                 // @phpstan-ignore-next-line $this->last can't be null, PHPStan doesn't know that
                 $this->last->setNext(null);
                 unset($current);
-                /** @phpstan-ignore-next-line $this->countcount can't be 0, PHPStan doesn't know that */
+                /** @phpstan-ignore-next-line $this->count can't be 0, PHPStan doesn't know that */
                 $this->count--;
             }
             while (
@@ -416,6 +423,9 @@ class LinkedList
      * @return LinkedList|$this
      *
      * @throws InvalidListTypeException The lists are not of the same type
+     *
+     * @throws InvalidListTypeException bad list values type
+     * @throws Exception compare exception
      */
     public function merge(LinkedList $linkedList): LinkedList
     {
@@ -520,6 +530,8 @@ class LinkedList
      * @param string|int $value2
      *
      * @return int -1 if $value1 < $value2, 0 if $value1 = $value2, 1 if $value1 > $value2
+     *
+     * @throws Exception error
      */
     private function compare(string|int $value1, string|int $value2): int
     {

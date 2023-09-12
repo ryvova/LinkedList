@@ -5,7 +5,7 @@ namespace LinkedList\Exceptions;
 use Throwable;
 
 /**
- * Třída pro pro vytvoření výjimky chybnou hodnotu Node
+ * A class for an invalid Node value to throw an exception
  *
  * @author: Anna Rývová (anna.ryvova@gmail.com)
  * @copyright:Copyright (c) 2023, Anna Rývová
