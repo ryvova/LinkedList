@@ -6,11 +6,14 @@ use Exception;
 use Throwable;
 
 /**
- * Výjimka pro chybný typ hodnoty Node v seznamu
+ * Třída pro vytvoření výjimky pro chybný typ uzlu
+ *
+ * @author: Anna Rývová (anna.ryvova@gmail.com)
+ * @copyright:Copyright (c) 2023, Anna Rývová
  */
-class InvalidValueNodeTypeException extends Exception
-{
-    /**
+ class InvalidValueNodeTypeException extends Exception
+ {
+    /*
      * @param string $type             správný typ hodnoty Node
      * @param int $code                kód výjimky
      * @param Throwable|null $previous předchozí výjimka

@@ -32,10 +32,17 @@ class LinkedList
     private int $count = 0;
 
     /**
-     * @var Collator
+     * @var Collator pro porovnávání podle diakritiky
      */
     private Collator $collator;
 
+    /**
+     * Vytvoří nový seznam
+     *
+     * @param string $type typ hodnot v seznamu
+     *
+     * @throws Exception
+     */
     public function __construct(string $type = 'int') {
         $this->type = $type;
 
@@ -57,10 +64,10 @@ class LinkedList
         return $this->first;
     }
 
-  /*  public function setFirst(Node $node): void
+    public function setFirst(Node $node): void
     {
         $this->first = $node;
-    } */
+    }
 
     public function getLast(): ?Node
     {
@@ -77,6 +84,13 @@ class LinkedList
         return $this->count;
     }
 
+    /**
+     * Přidá hodnotu na začátek seznamu
+     *
+     * @param int|string $value
+     * @return void
+     * @throws Exception
+     */
     public function unshift(int|string $value): void {
         if ($this->first !== null && $this->compare($value, $this->first->getValue()) === 1) {
             throw new Exception("Nelze přidat na začátek, použij add()");
@@ -90,6 +104,13 @@ class LinkedList
         $this->count++;
     }
 
+    /**
+     * Smaže poslední hodnotu v seznamu
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function shift(): void
     {
         if (empty($this->first)) {
@@ -107,6 +128,15 @@ class LinkedList
         $this->count--;
     }
 
+    /**
+     * Přidá hodnotu na konec seznamu
+     *
+     * @param int|string $value
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function push(int|string $value): void {
         /** @phpstan-ignore-next-line $this->last nemůže být null, PHPStan to neví */
         if ($this->compare($value, $this->last->getValue()) <= 0) {
@@ -121,6 +151,12 @@ class LinkedList
         $this->count++;
     }
 
+    /**
+     * Přidá hodnotu do seznamu. Pokud už v seznamu stejné hodnoty existují, přidá novou hodnotu před první z nich
+     *
+     * @param int|string $value
+     * @return void
+     */
     public function add(int|string $value): void
     {
         // jedna nebo druhá část podmínky je true - zajištěno deklarací typu parametru
@@ -192,6 +228,14 @@ class LinkedList
         }
     }
 
+    /**
+     * Odstraní hodnotu ze seznamu
+     *
+     * @param string|int $value             hodnota, která se má odstranit
+     * @param bool $deleteAllNodesWithValue true - odstraní všechny uzly se zadanou hodnotou, false - odtraní jen 1. výskyt
+     *
+     * @return void
+     */
     public function delete(string|int $value, bool $deleteAllNodesWithValue = true): void
     {
         if ($this->count === 0 || $this->first === null || $this->last === null) {
@@ -301,6 +345,7 @@ class LinkedList
      * Najde v seznamu všechny Node s hodnotou $value
      *
      * @param string|int $value
+     *
      * @return array<int, Node>
      *
      * @throws NodeNotFoundException         Node se zadanou hodnotou nebyl nalezen
@@ -354,6 +399,15 @@ class LinkedList
         return $nodes;
     }
 
+    /**
+     * Přidá do seznamu další setříděný seznam stejného typu
+     *
+     * @param LinkedList $linkedList
+     *
+     * @return LinkedList|$this
+     *
+     * @throws InvalidListTypeException Seznamy nejsou stejného typu
+     */
     public function merge(LinkedList $linkedList): LinkedList
     {
         if ($this->type !== $linkedList->type) {
@@ -461,6 +515,7 @@ class LinkedList
      */
     private function compare(string|int $value1, string|int $value2): int
     {
+        // možná by bylo efektivnější jen nevědecky přetypovat na string?
         if (is_int($value1)) {
             if ($value1 < $value2) {
                 return -1;
