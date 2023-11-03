@@ -26,10 +26,10 @@ In practice, where the library would be part of a larger project, it would be ad
 
 I use the __toString() methods to clearly display information about lists for testing purposes (var_dump objects with pointers is very confusing). I want to be sure that the code is functional, so I wrote unit tests for it.
 
+It is worth considering whether to make the list immutable - after creation, set a flag to it and during further processing check whether there has been a change.
+
 Since you say you use your own rules for PHPStan, I also ran the code through PHPStan level 9.
 
 I never use recursion due to extreme memory requirements.
-
 I wanted to be sure that the code works, so I also wrote PHPUnit tests for the methods.
-
 It should be a libraty, so I registered the code as a package on packagist.org as ryvova/linkedlist

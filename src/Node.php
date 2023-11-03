@@ -27,8 +27,8 @@ class Node
      */
     public function __construct(
       private readonly string|int $value, // node value
-      private ?Node $prev,       // previous node
-      private ?Node $next        // next node
+      private ?Node $prev,                // previous node
+      private ?Node $next                 // next node
     )
     {
     }
